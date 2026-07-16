@@ -1,1 +1,1 @@
-This repo is a record of my learning and research for machine learning and neural networks. 
+This repo is a collection of my learning and research for machine learning and neural networks. 
