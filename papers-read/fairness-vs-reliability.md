@@ -2,20 +2,18 @@
 
 Recent work has begun examining fairness in knowledge tracing models across demographic and student-specific characteristics. For example, an EDM 2025 paper investigates fairness in Bayesian Knowledge Tracing with respect to reading ability, demonstrating that fairness across learner groups is an active area of educational data mining research. This indicates that demographic and learner-characteristic fairness is already being explored within the knowledge tracing literature.
 
-In contrast, I found substantially less work evaluating whether **prerequisite-gap identification** is equally reliable across students with different levels of prior mathematical ability. Existing prerequisite-aware and interpretable knowledge tracing models primarily focus on improving prediction accuracy or generating better explanations, rather than analyzing whether those explanations remain equally trustworthy for struggling and advanced learners. My research therefore focuses on evaluating the reliability of prerequisite-gap identification across ability groups rather than proposing another prerequisite-aware knowledge tracing architecture.
+In contrast, I found substantially less work evaluating whether **next-question performance predictions** are equally reliable across students with different levels of prior ability. Existing knowledge tracing research primarily focuses on overall predictive performance, commonly using metrics such as AUC, rather than analyzing whether predicted probabilities are equally trustworthy for students at different ability levels. A model may achieve strong overall predictive performance while systematically overestimating or underestimating performance for a particular ability group. My research therefore focuses on evaluating the reliability of next-question predictions across ability groups using established knowledge tracing approaches rather than proposing another knowledge tracing architecture.
 
 ---
 
-# Draft Metric Definition: Ability-Stratified Prerequisite Diagnosis Reliability
+# Draft Metric Definition: Ability-Stratified Prediction Reliability
 
-For each prediction made by the knowledge tracing model, the attention weights are used to identify the top-*k* prerequisite concepts receiving the highest attention. These concepts are interpreted as the model's predicted prerequisite knowledge relevant to the target concept.
+For each student interaction, the knowledge tracing model uses the student's previous interaction history to predict the probability that the student will answer the next question correctly. The model produces a probability between 0 and 1, while the student's actual response provides the observed outcome of either correct or incorrect.
 
-A predicted prerequisite concept is considered **correct** if an independent ground-truth criterion indicates that the student demonstrates insufficient mastery of that concept. Ground truth may be determined using later concept-level assessment performance, repeated failures on concept-tagged exercises, or an expert-defined prerequisite graph, depending on the dataset.
+A prediction is considered **reliable** when predicted probabilities correspond closely to observed outcomes across groups of predictions. For example, if a model assigns a probability of approximately 0.80 to a group of predictions, approximately 80% of those predictions should result in correct responses if the model is well calibrated. Reliability can therefore be evaluated using measures such as the Brier score, Expected Calibration Error (ECE), and reliability diagrams.
 
-For each student, prerequisite diagnosis accuracy is computed as the proportion of correctly identified prerequisite concepts among the top-*k* attended concepts. Students are then stratified into ability groups using a predefined ability estimation method, such as historical mastery rate or an Item Response Theory (IRT) estimate.
+Students are then stratified into ability groups using a predefined ability estimation method based only on information available before the evaluation predictions, such as historical accuracy or an Item Response Theory (IRT) estimate. Students can be divided into ability quartiles, ranging from the lowest-ability quartile to the highest-ability quartile.
 
-For each ability group, the following metric is computed:
+For each ability group, the same reliability metrics are calculated separately for Logistic Regression, Bayesian Knowledge Tracing (BKT), and Self-Attentive Knowledge Tracing (SAKT). Comparing these metrics across ability groups allows evaluation of whether different knowledge tracing models provide equally reliable predictions for students with different levels of prior ability.
 
-**Prerequisite Diagnosis Reliability = (Number of correct prerequisite diagnoses) ÷ (Total number of prerequisite diagnoses).**
-
-Comparing this metric across low-, medium-, and high-ability groups allows evaluation of whether prerequisite-aware knowledge tracing models provide equally reliable prerequisite-gap identification for students with different levels of prior mathematical ability.
+**Ability-Stratified Prediction Reliability** therefore measures whether a model's predicted probabilities correspond equally well to actual future performance across student ability groups. Differences in calibration or prediction error between ability quartiles would indicate that a model's predictions are less reliable for some students, even if its overall predictive performance is strong.
