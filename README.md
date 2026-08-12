@@ -4,7 +4,7 @@ This repository documents my independent machine learning research project in ed
 
 ## Research Question
 
-How does student ability affect the reliability of knowledge tracing models in identifying prerequisite knowledge gaps?
+How does student ability affect the reliability of predictions from knowledge tracing models?
 
 ## Repository
 
