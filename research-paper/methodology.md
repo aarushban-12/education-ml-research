@@ -30,17 +30,17 @@ BKT was fitted using pyBKT 1.4.3, with parameters estimated separately for each 
 
 DKT was the first major deep learning approach to knowledge tracing and remains a standard benchmark. Rather than explicitly defining a knowledge state, DKT uses a Long Short-Term Memory (LSTM) recurrent neural network to learn a latent representation of student knowledge directly from the sequence of past interactions. The model takes a student's history of skill-response pairs as input and outputs a probability of correct response for the next skill.
 
-DKT was implemented using the [HCNOH knowledge-tracing-collection-pytorch](https://github.com/hcnoh/knowledge-tracing-collection-pytorch) repository and trained with a hidden size of 128, a single LSTM layer, a dropout rate of 0.2, a batch size of 128, and a learning rate of 0.001 using the Adam optimizer for 100 epochs. The checkpoint with the highest validation ROC-AUC was retained for evaluation.
+DKT was implemented using the [HCNOH knowledge-tracing-collection-pytorch](https://github.com/hcnoh/knowledge-tracing-collection-pytorch) repository and trained with a hidden size of 128, a single LSTM layer, a dropout rate of 0.2, a batch size of 128, and a learning rate of 0.001 using the Adam optimizer for 100 epochs. The checkpoint with the highest validation AUC was retained for evaluation.
 
 ### 3.3.4 Self-Attentive Knowledge Tracing
 
 SAKT is the primary model of interest in this study. Where DKT compresses a student's entire history into a single hidden state, SAKT uses a self-attention mechanism to selectively focus on whichever past interactions are most relevant to the current prediction. This allows the model to identify which earlier skill-response pairs are most informative for predicting performance on a new skill, rather than weighting all past interactions equally.
 
-SAKT was also implemented using the HCNOH repository and trained with a sequence length of 100, five attention heads, an embedding dimension of 125, a dropout rate of 0.2, a batch size of 128, and a learning rate of 0.0001 using the Adam optimizer for 100 epochs. As with DKT, the checkpoint with the highest validation ROC-AUC was retained.
+SAKT was also implemented using the HCNOH repository and trained with a sequence length of 100, five attention heads, an embedding dimension of 125, a dropout rate of 0.2, a batch size of 128, and a learning rate of 0.0001 using the Adam optimizer for 100 epochs. As with DKT, the checkpoint with the highest validation AUC was retained.
 
 ## 3.4 Baseline Model Evaluation
 
-All four models were evaluated using the area under the receiver operating characteristic curve (ROC-AUC). ROC-AUC was chosen because knowledge-tracing predictions are inherently probabilistic. Models output a probability of correctness rather than a binary prediction, and ROC-AUC summarizes discrimination performance across all possible classification thresholds without requiring one to be specified in advance.
+All four models were evaluated using the area under the receiver operating characteristic curve (AUC). AUC was chosen because knowledge-tracing predictions are inherently probabilistic. Models output a probability of correctness rather than a binary prediction, and AUC summarizes discrimination performance across all possible classification thresholds without requiring one to be specified in advance.
 
 ## 3.5 Ability-Stratified Dataset Construction
 
@@ -58,7 +58,7 @@ For each interaction in a given quartile, the model generated a probability of a
 
 To ensure that any observed differences across ability groups reflect genuine differences in model behavior rather than differences in who is being evaluated, the same ability-stratified test datasets were used for all four models.
 
-Two metrics were computed for each model and each quartile. ROC-AUC was used to measure predictive discrimination: how well the model separates students who will answer correctly from those who will not. Brier Score was used to measure probabilistic calibration: how close the model's predicted probabilities are to the actual observed outcomes. Brier Score is defined as:
+Two metrics were computed for each model and each quartile. AUC was used to measure predictive discrimination: how well the model separates students who will answer correctly from those who will not. Brier Score was used to measure probabilistic calibration: how close the model's predicted probabilities are to the actual observed outcomes. Brier Score is defined as:
 
 $$BS = \frac{1}{n} \sum_{t=1}^{n} (f_t - o_t)^2$$
 
