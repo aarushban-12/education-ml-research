@@ -1,35 +1,43 @@
-# Results
+# 4. Results
 
-The performance of each knowledge tracing model was evaluated across four student-ability quartiles (Q1–Q4) using Area Under the Receiver Operating Characteristic Curve (AUC) and Brier Score. AUC measures a model’s ability to discriminate between correct and incorrect responses, with higher values indicating better discrimination. Brier Score measures the accuracy of probabilistic predictions, with lower values indicating better performance. The results for Logistic Regression, Bayesian Knowledge Tracing (BKT), Deep Knowledge Tracing (DKT), and Self-Attentive Knowledge Tracing (SAKT) are presented below.
+The performance of each knowledge tracing model was evaluated in two stages. First, each model was trained and evaluated on the standard 80/20 student-level split to establish a baseline. Second, each model was trained on the ability-stratified training set and evaluated separately on each of the four ability quartiles (Q1–Q4), where Q1 represents the lowest-ability students and Q4 the highest. In the evaluation, higher AUC and lower Brier Score both indicate better performance.
 
-## AUC Across Student-Ability Quartiles
+## 4.1 Baseline Results
 
-Model performance varied substantially across ability groups. DKT achieved the highest AUC for Q1, Q2, and Q3, while BKT achieved the highest AUC for Q4.
+Before examining ability-stratified performance, each model was evaluated on the overall test set to confirm that the expected performance ordering held. As shown in Table 1 and Figure 1, DKT achieved the highest baseline AUC, followed by SAKT, BKT, and Logistic Regression. This was done to validate that all four implementations are functioning correctly.
 
-For the lowest-ability group (Q1), DKT achieved the highest AUC at 0.818, followed closely by SAKT at 0.812. BKT achieved an AUC of 0.730, while Logistic Regression performed lowest at 0.684. This indicates that the two neural knowledge tracing models were substantially better at discriminating between correct and incorrect responses for students in the lowest ability quartile.
+<div style="display: flex; justify-content: center; align-items: center; gap: 50px;">
+  <img src="pngs/figure1_baseline_auc.png" alt="Figure 1. Baseline AUC Results" style="width: 35%; height: auto;" />
+  <img src="pngs/table1.png" alt="Table 1. Baseline AUC Results" style="width: auto; height: 300px;" />
+</div>
 
-For Q2, DKT again achieved the highest AUC (0.758), followed by SAKT (0.746) and BKT (0.736). Logistic Regression performed considerably worse, with an AUC of 0.583. A similar pattern was observed for Q3, where DKT achieved an AUC of 0.761 and SAKT achieved 0.751, compared with 0.714 for BKT and 0.574 for Logistic Regression.
 
-The pattern changed for the highest-ability group (Q4). BKT achieved the highest AUC of all models at 0.813, exceeding DKT (0.765), SAKT (0.760), and Logistic Regression (0.692). Thus, although DKT and SAKT performed best for the lower three ability groups, BKT produced the strongest discrimination for the highest-ability students.
 
-Overall, the AUC results do not show a uniform relationship between student ability and model discrimination. Instead, model rankings changed across ability groups, with DKT and SAKT generally performing better for lower- and middle-ability students and BKT showing a substantial improvement for the highest-ability group.
+## 4.2 AUC Across Ability Quartiles
 
-## Brier Score Across Student-Ability Quartiles
+Table 2 and Figure 2 present the AUC for each model across the four ability quartiles.
 
-The Brier Score results showed a clearer relationship between student ability and probabilistic prediction accuracy. Across the models, Brier Scores generally decreased for higher-ability students, particularly for BKT and the neural knowledge tracing models.
+<div style="display: flex; justify-content: center; align-items: center; gap: 50px;">
+  <img src="pngs/figure2_auc_quartiles.png" alt="Figure 2. AUC Across Student-Ability Quartiles" style="width: 35%; height: auto;" />
+  <img src="pngs/table2.png" alt="Table 2. AUC Results" style="width: auto; height: 300px;" />
+</div>
+The two neural models, DKT and SAKT, achieved the strongest discrimination across Q1, Q2, and Q3, with DKT slightly outperforming SAKT in all three groups. Logistic Regression performed considerably worse in the middle ability groups, with AUC values well below those of the other three models in Q2 and Q3.
 
-For Q1, SAKT produced the lowest Brier Score at 0.166, followed by DKT at 0.175, Logistic Regression at 0.207, and BKT at 0.218. For Q2, BKT achieved the lowest Brier Score (0.204), closely followed by SAKT (0.199) and DKT (0.195), while Logistic Regression had the highest Brier Score at 0.242.
+The most striking pattern was observed in Q4. BKT, which showed the weakest discrimination among the non-LR models across Q1 through Q3, substantially improved in the highest-ability group and outperformed all other models. DKT and SAKT, by contrast, showed relatively stable AUC values across all four quartiles with only modest variation between groups.
 
-For Q3, SAKT achieved the lowest Brier Score at 0.156, followed closely by DKT at 0.163 and BKT at 0.168. Logistic Regression again performed worse, with a Brier Score of 0.192.
+Overall, the AUC results suggest that model rankings are not stable across ability levels. The advantage of neural models over BKT narrows considerably and reverses in Q4 as student ability increases.
 
-The largest differences occurred for Q4. BKT achieved a Brier Score of 0.089, the lowest value observed across all models and ability groups. SAKT followed with 0.103, while Logistic Regression and DKT achieved 0.111 and 0.126, respectively. Therefore, BKT demonstrated particularly strong probabilistic accuracy for the highest-ability students.
+## 4.3 Brier Score Across Ability Quartiles
 
-## Comparison Across Models
+Table 3 and Figure 3 present the Brier Score for each model across the four ability quartiles.
 
-Taken together, the AUC and Brier Score results indicate that model performance depends on student ability and that the effect differs depending on the evaluation metric. DKT and SAKT generally provided the strongest discrimination for Q1–Q3, whereas BKT performed best for Q4. In terms of probabilistic accuracy, SAKT performed best for Q1 and Q3, while BKT performed best for Q2 and Q4.
+<div style="display: flex; justify-content: center; align-items: center; gap: 50px;">
+  <img src="pngs/figure3_brier_quartiles.png" alt="Figure 3. Brier Score Across Student-Ability Quartiles" style="width: 35%; height: auto;" />
+  <img src="pngs/table3.png" alt="Table 3. Brier Score Results" style="width: auto; height: 300px;" />
+</div>
 
-The most notable result was the performance of BKT on Q4. Its AUC increased from 0.730 in Q1 to 0.813 in Q4, while its Brier Score decreased from 0.218 to 0.089. This represents both improved discrimination and substantially more accurate probability estimates for the highest-ability students.
+The Brier Score results reveal a clearer directional pattern than the AUC results. Across all models, probabilistic calibration improved as student ability increased: Brier Scores generally decreased from Q1 to Q4. This improvement was most dramatic for BKT, which achieved by far the lowest Brier Score of any model in Q4, and most modest for DKT.
 
-In contrast, Logistic Regression showed relatively weak discrimination across the middle ability groups, with AUC values of 0.583 and 0.574 for Q2 and Q3, respectively, although its probabilistic accuracy improved considerably for Q4. DKT and SAKT showed more consistent AUC performance across the four groups, but neither demonstrated the same improvement in Q4 that was observed for BKT.
+SAKT produced the best probabilistic calibration for Q1 and Q3, while BKT was strongest in Q2 and Q4. DKT showed consistently moderate Brier Scores across all groups but did not lead in any quartile. Logistic Regression performed worst in the middle ability groups, consistent with its AUC results, though it improved substantially in Q4.
 
-Overall, these findings demonstrate that the reliability and predictive performance of knowledge tracing models are not uniform across student-ability groups. The differences between ability groups, particularly the strong improvement of BKT for Q4, suggest that student ability is an important factor to consider when evaluating knowledge tracing models.
+The Q4 Brier Score for BKT stands out as the single most notable result in the dataset. BKT's Brier Score dropped sharply from Q1 to Q4, a pattern not observed to the same degree in the neural models. This suggests that BKT's probabilistic predictions become substantially more accurate as student ability increases, while DKT and SAKT remain more consistent but less dramatically improved across the ability spectrum.
