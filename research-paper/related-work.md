@@ -1,6 +1,6 @@
-# Related Work
+# 2. Related Work
 
-## 1. Knowledge Tracing Models Overview
+## 2.1 Knowledge Tracing Models Overview
 
 Knowledge Tracing (KT) aims to model a student's evolving mastery of concepts from a sequence of learning interactions in order to predict future performance on educational tasks. An early model used to accomplish this was Bayesian Knowledge Tracing (BKT), which is a probabilistic method that maintains a hidden state representing a student's mastery of a skill and updates this state after each question based on whether the student answered correctly or incorrectly (Corbett & Anderson, 1994). Although BKT is highly interpretable and provides a clear probabilistic representation of student learning, it assumes that skills are independent and cannot model complex relationships among concepts. Despite these limitations, BKT established the foundation for modern knowledge tracing by introducing a framework for estimating student knowledge from sequences of learning interactions.
 
@@ -8,7 +8,7 @@ The introduction of Deep Knowledge Tracing (DKT) marked a major shift toward dee
 
 Subsequent work introduced external memory components and increasingly sophisticated architectures to address the limitations of recurrent models (Zhang et al., 2017). More recently, Transformer-inspired architectures have become increasingly influential in knowledge tracing, replacing recurrent computation with attention mechanisms. Shen et al. (2021) review the development of attention-based knowledge tracing models and discuss how attention mechanisms allow models to capture long-range dependencies in student interaction sequences.
 
-## 2. Attention-Based Knowledge Tracing
+## 2.2 Attention-Based Knowledge Tracing
 
 Attention-based knowledge tracing models were proposed to overcome limitations of recurrent neural networks, particularly their tendency to compress an entire learning history into a single hidden representation. Self-Attentive Knowledge Tracing (SAKT) introduced multi-head self-attention, allowing the model to assign different importance weights to previous question-response interactions when predicting future responses rather than treating all historical interactions equally (Pandey & Karypis, 2019).
 
@@ -16,7 +16,7 @@ Attentive Knowledge Tracing (AKT) extended SAKT by incorporating educational psy
 
 The survey by Shen et al. (2021) reviews the development of attention-based architectures in knowledge tracing and discusses their ability to model long-range dependencies within student interaction sequences.
 
-## 3. Interpretability in Knowledge Tracing
+## 2.3 Interpretability in Knowledge Tracing
 
 As predictive performance has improved, researchers have increasingly focused on making knowledge tracing models interpretable (Shen et al., 2021; Abdelrahman et al., 2022). Rather than producing only predictions of future correctness, interpretable models seek to explain which concepts influence student performance and why predictions are made.
 
@@ -24,7 +24,7 @@ One important direction is Prerequisite-Driven Deep Knowledge Tracing (PDKT), wh
 
 However, interpretability alone does not establish whether educational interpretations are reliable for different types of learners. A model may identify the same prerequisite gap for two students while the reliability of that diagnosis differs depending on their underlying level of mathematical ability. Thus, evaluating the reliability of model-generated educational diagnoses across learner groups represents an important extension of existing work on interpretability in knowledge tracing.
 
-## 4. Fairness and Equity in Knowledge Tracing
+## 2.4 Fairness and Equity in Knowledge Tracing
 
 Another emerging research direction investigates whether knowledge tracing models behave fairly across different groups of learners. Recent work recognizes that high predictive accuracy alone is insufficient if models systematically perform better for some student populations than others.
 
@@ -32,7 +32,7 @@ A recent EDM 2025 study by Stinar et al. investigates whether Bayesian Knowledge
 
 Although this work demonstrates the importance of evaluating knowledge tracing across learner groups, relatively little attention has been given to whether knowledge tracing predictions are equally reliable for students with different levels of prior academic ability. In particular, aggregate metrics may conceal differences in predictive reliability between higher- and lower-ability students. Examining model performance separately across ability groups can therefore provide a more detailed understanding of how reliably knowledge tracing models represent student knowledge.
 
-## 5. Research Gap: Ability-Stratified Reliability
+## 2.5 Research Gap: Ability-Stratified Reliability
 
 The existing literature demonstrates substantial progress in knowledge tracing, including increasingly sophisticated predictive models, attention-based architectures, interpretable approaches, and emerging research on fairness across learner populations. However, most knowledge tracing evaluations continue to emphasize aggregate predictive metrics such as Area Under the ROC Curve (AUC) and overall prediction accuracy. These metrics provide an overall assessment of model performance but may obscure differences in reliability across individual groups of learners.
 
