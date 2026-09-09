@@ -1,0 +1,11 @@
+# Abstract
+
+Knowledge Tracing (KT) models are increasingly used to predict student performance, but aggregate metrics may hide differences in prediction reliability across students with different ability levels. This study evaluates four KT models on the ASSISTments 2009 dataset by dividing students into four ability quartiles and measuring performance using AUC and Brier Score. Results show that model reliability varied across ability groups, suggesting that ability-stratified evaluation can reveal differences that aggregate metrics may overlook.
+
+# 1. Introduction
+
+Educational technology has begun to increasingly rely on machine learning and neural networks to model student learning. One important application is Knowledge Tracing (KT), which uses a student's history of learning interactions to estimate their current knowledge state and predict their future performance. These predictions can be used to personalize learning to each student, making the reliability of these predictions an important practical concern.
+
+As knowledge tracing models have become more sophisticated, their performance is typically evaluated using aggregate metrics across the entire testing population. Even though these metrics are useful for comparing models against each other, they do not reveal whether a model performs equally well for all types of students. Students enter learning environments with different levels of prior knowledge, and these differences may affect how predictable their future responses are. A model that performs well on average may still produce less reliable predictions for certain groups of students. This creates a need to examine model performance across different levels of student ability rather than relying only on overall performance.
+
+This study investigates how student ability affects the reliability of knowledge tracing predictions. Four models were tested: Logistic Regression, Bayesian Knowledge Tracing, Deep Knowledge Tracing, and Self-Attentive Knowledge Tracing. Using the ASSISTments 2009 dataset, four ability quartiles were created and each model was be tested on them. Two metrics were used to examine different aspects of prediction reliability: AUC and Brier Score. The central research question is: How does student ability affect the reliability of knowledge tracing models?
