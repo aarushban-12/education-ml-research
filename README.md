@@ -25,6 +25,17 @@ The results showed that model performance varied across student-ability groups. 
 
 These results suggest that evaluating knowledge tracing models only using aggregate performance may overlook differences between student populations.
 
+### Results
+
+| Model               |    Q1 AUC |    Q2 AUC |    Q3 AUC |    Q4 AUC |  Q1 Brier |  Q2 Brier |  Q3 Brier |  Q4 Brier |
+| ------------------- | --------: | --------: | --------: | --------: | --------: | --------: | --------: | --------: |
+| Logistic Regression |     0.684 |     0.583 |     0.574 |     0.692 |     0.207 |     0.242 |     0.192 |     0.111 |
+| BKT                 |     0.730 |     0.736 |     0.714 | **0.813** |     0.218 |     0.204 |     0.168 | **0.089** |
+| DKT                 | **0.818** | **0.758** | **0.761** |     0.765 |     0.175 | **0.195** |     0.163 |     0.126 |
+| SAKT                |     0.812 |     0.746 |     0.751 |     0.760 | **0.166** |     0.199 | **0.156** |     0.103 |
+
+*Q1 represents the lowest-ability quartile and Q4 the highest-ability quartile. Higher AUC indicates better discrimination, while lower Brier Score indicates lower prediction error.*
+
 ## Methodology
 
 Students were divided into four ability quartiles based on overall interaction accuracy, with Q1 representing the lowest-ability students and Q4 representing the highest-ability students.
@@ -79,4 +90,3 @@ The project developed through several stages:
 7. Conducting the reliability experiments
 8. Analyzing and documenting the results
 9. Completing the research paper
-
