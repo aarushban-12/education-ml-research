@@ -1,2 +1,7 @@
 .venv/
-performance-experiment/assistments2009_raw.csv
+
+# ASSISTments 2009 files
+performance-experiment/assistments2009/assistments2009_raw.csv
+performance-experiment/assistments2009/assistments2009_eligibility_audit.csv
+performance-experiment/assistments2009/assistments2009_excluded_students.csv
+performance-experiment/assistments2009/assistments2009_filtered.parquet
