@@ -1,4 +1,9 @@
+# Python env
 .venv/
+
+# macOS metadata
+.DS_Store
+**/.DS_Store
 
 # ASSISTments 2009 files
 performance-experiment/assistments2009/assistments2009_raw.csv
