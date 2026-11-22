@@ -6,3 +6,8 @@ performance-experiment/assistments2009/assistments2009_eligibility_audit.csv
 performance-experiment/assistments2009/assistments2009_excluded_students.csv
 performance-experiment/assistments2009/assistments2009_filtered.parquet
 performance-experiment/assistments2009/assistments2009_cleaned_all_students.parquet
+
+# ASSISTments 2017 files
+performance-experiment/assistments2017/assistments2017_raw.csv
+performance-experiment/assistments2017/assistments2017_filtered.parquet
+performance-experiment/assistments2017/assistments2017_student_mcas.parquet
