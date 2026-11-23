@@ -16,3 +16,8 @@ performance-experiment/assistments2009/assistments2009_cleaned_all_students.parq
 performance-experiment/assistments2017/assistments2017_raw.csv
 performance-experiment/assistments2017/assistments2017_filtered.parquet
 performance-experiment/assistments2017/assistments2017_student_mcas.parquet
+
+# Junyi Academy files
+performance-experiment/junyi/junyi_raw.csv
+performance-experiment/junyi/junyi_filtered_subsample.parquet
+performance-experiment/junyi/junyi_filtered.parquet
